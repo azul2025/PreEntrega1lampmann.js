@@ -6,25 +6,25 @@ const cambioEl = document.getElementById('cambio');
 const tazaEl = document.getElementById('taza');
 
 
-// tipo de cambio
+// Fetch Exchange Rate and Update the DOM
 function calculate(){
     const moneda_one = monedaEl_one.value;
     const moneda_two = monedaEl_two.value;
 
-    ( `https://api.exchangerate-api.com/v4/latest/ ${ moneda_one } ` )
+   fetch(`https://api.exchangerate-api.com/v4/latest/${moneda_one}`)
    .then(res => res.json() )
    .then(data => {
        const taza = data.rates[moneda_two];
-
+       
        cambioEl.innerText = `1 ${moneda_one} = ${taza} ${moneda_two}`;
 
        cantidadEl_two.value = (cantidadEl_one.value * taza).toFixed(2);
 
     } );
-
+    
 }
 
-
+//Event listeners
 monedaEl_one.addEventListener('change', calculate);
 cantidadEl_one.addEventListener('input', calculate);
 monedaEl_two.addEventListener('change', calculate);
