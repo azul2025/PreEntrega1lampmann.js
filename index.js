@@ -11,7 +11,7 @@ function calculate(){
     const moneda_one = monedaEl_one.value;
     const moneda_two = monedaEl_two.value;
 
-   fetch(`https://api.exchangerate-api.com/v4/latest/${moneda_one}`)
+    ( `https://api.exchangerate-api.com/v4/latest/ ${ moneda_one } ` )
    .then(res => res.json() )
    .then(data => {
        const taza = data.rates[moneda_two];
